@@ -22,12 +22,12 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddSingleton<HelperOAuthToken>();
-        HelperOAuthToken helper = new HelperOAuthToken(Configuration);
+        HelperOAuthToken helper = new HelperOAuthToken(this.Configuration);
         services.AddAuthentication(helper.GetAuthenticationOptions()).AddJwtBearer(helper.GetJwtOptions());
 
 
         // Add services to the container.
-        string connectionString = Configuration.GetConnectionString("MySqlAWS");
+        string connectionString = this.Configuration.GetConnectionString("MySqlAWS");
 
         services.AddSingleton<HelperCryptography>();
         services.AddTransient<HelperUserToken>();

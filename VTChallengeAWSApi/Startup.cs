@@ -93,6 +93,7 @@ public class Startup
             options.DocExpansion(DocExpansion.None);
         });
 
+        app.UseAuthentication();
 
         app.UseHttpsRedirection();
 

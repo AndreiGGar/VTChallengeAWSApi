@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using NugetVTChallenge.Interfaces;
+using NugetVTChallenge.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using VTChallengeAWSApi.Helpers;
 using VTChallengeAWSApi.Data;
 using VTChallengeAWSApi.Helpers;
 using VTChallengeAWSApi.Repositories;
@@ -25,9 +27,10 @@ public class Startup
         HelperOAuthToken helper = new HelperOAuthToken(this.Configuration);
         services.AddAuthentication(helper.GetAuthenticationOptions()).AddJwtBearer(helper.GetJwtOptions());
 
+        KeysModel model = HelperSecretManager.GetSecretAsync().GetAwaiter().GetResult();
 
         // Add services to the container.
-        string connectionString = this.Configuration.GetConnectionString("MySqlAWS");
+        string connectionString = model.RDS;
 
         services.AddSingleton<HelperCryptography>();
         services.AddTransient<HelperUserToken>();

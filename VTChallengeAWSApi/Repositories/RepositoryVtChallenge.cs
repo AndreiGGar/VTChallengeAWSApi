@@ -272,7 +272,7 @@ namespace VTChallengeAWSApi.Repositories
         public async Task DeleteTournament(int tid, string uid)
         {
             string sql = "CALL SP_DELETE_TOURNAMENT(@VTID)";
-            MySqlParameter pamTid = new MySqlParameter("@TID", tid);
+            MySqlParameter pamTid = new MySqlParameter("@VTID", tid);
 
             await this.context.Database.ExecuteSqlRawAsync(sql, pamTid);
         }

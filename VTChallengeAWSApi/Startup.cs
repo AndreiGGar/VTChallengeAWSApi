@@ -27,10 +27,12 @@ public class Startup
         HelperOAuthToken helper = new HelperOAuthToken(this.Configuration);
         services.AddAuthentication(helper.GetAuthenticationOptions()).AddJwtBearer(helper.GetJwtOptions());
 
-        KeysModel model = HelperSecretManager.GetSecretAsync().GetAwaiter().GetResult();
+        /*KeysModel model = HelperSecretManager.GetSecretAsync().GetAwaiter().GetResult();
+        services.AddSingleton<KeysModel>(x => model).BuildServiceProvider();*/
 
         // Add services to the container.
-        string connectionString = model.RDS;
+        /*string connectionString = model.RDS;*/
+        string connectionString = this.Configuration.GetConnectionString("MySqlAWS");
 
         services.AddSingleton<HelperCryptography>();
         services.AddTransient<HelperUserToken>();

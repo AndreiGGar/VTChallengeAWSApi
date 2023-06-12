@@ -1,4 +1,4 @@
-﻿using Amazon;
+﻿/*using Amazon;
 using Amazon.SecretsManager;
 using Amazon.SecretsManager.Model;
 using NugetVTChallenge.Models;
@@ -31,3 +31,4 @@ namespace VTChallengeAWSApi.Helpers
         }
     }
 }
+*/
